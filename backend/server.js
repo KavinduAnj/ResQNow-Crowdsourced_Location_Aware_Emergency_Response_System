@@ -17,7 +17,7 @@ app.use(express.json());
 // Auth routes
 app.use("/api/auth", authRoutes);
 
-app.use('/api/incidens', incidentRoutes);
+app.use('/api/incidents', incidentRoutes);
 
 app.get("/", (req, res) => {
   res.send("ResQNow backend running");
