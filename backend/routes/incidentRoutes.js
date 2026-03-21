@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const incidentController = require('../controllers/incidentController');
 const { verifyToken } = require('../middleware/authMiddleware');
+const allowRoles = require("../middleware/roleMiddleware"); // <-- ADD THIS
 const upload = require('../middleware/uploadMiddleware'); 
 
 router.get('/', incidentController.getAllIncidents);
@@ -13,6 +14,6 @@ router.post(
   incidentController.createIncident
 );
 
-router.put('/:id/status', verifyToken, incidentController.updateIncidentStatus);
+router.put('/:id/status', verifyToken, allowRoles("Admin"), incidentController.updateIncidentStatus);
 
 module.exports = router;
