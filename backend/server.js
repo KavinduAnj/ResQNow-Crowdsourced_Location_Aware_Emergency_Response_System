@@ -6,7 +6,6 @@ const User = require("./models/User");
 // Route imports
 const authRoutes = require("./routes/authRoutes.js");
 const incidentRoutes = require("./routes/incidentRoutes.js");
-//const reportRoutes = require("./routes/reportRoutes.js");
 const uploadRoutes = require("./routes/uploadRoutes");
 
 const app = express();
@@ -19,7 +18,6 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/incidents", incidentRoutes);
-//app.use("/api/reports", reportRoutes);
 app.use("/api/upload", uploadRoutes);
 
 // Root endpoint
