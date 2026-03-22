@@ -63,8 +63,16 @@ exports.updateIncidentStatus = async (req, res) => {
 
     const updatedIncident = await Incident.findByIdAndUpdate(
       req.params.id,
-      { status },
-      { new: true }
+      { 
+        $set: { status },
+        $push: { 
+          status_history: { 
+            status, 
+            changed_by: req.user ? req.user.id : null 
+          } 
+        } 
+      },
+      { new: true, runValidators: true }
     );
 
     if (!updatedIncident) {
