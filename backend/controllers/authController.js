@@ -1,13 +1,23 @@
+const { sendEmail, sendSMS } = require("../utils/notificationService");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// REGISTER USER
+//  REGISTER 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role, district,longitude, latitude, organization, contact_number } = req.body;
+    const {
+      name,
+      email,
+      password,
+      role,
+      district,
+      longitude,
+      latitude,
+      organization,
+      contact_number
+    } = req.body;
 
-    
     const lat = parseFloat(latitude);
     const lng = parseFloat(longitude);
 
@@ -15,21 +25,17 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "Latitude and Longitude required" });
     }
 
-
     if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
       return res.status(400).json({ message: "Invalid GPS coordinates" });
     }
 
-    // check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // create user
     const newUser = new User({
       name,
       email,
@@ -37,14 +43,12 @@ exports.register = async (req, res) => {
       role,
       district,
       location: {
-        type: 'Point',
-        coordinates: [parseFloat(longitude), parseFloat(latitude)]
+        type: "Point",
+        coordinates: [lng, lat]
       },
       organization,
       contact_number
     });
-
-    console.log("BODY:", req.body);
 
     await newUser.save();
 
@@ -55,31 +59,22 @@ exports.register = async (req, res) => {
   }
 };
 
-// LOGIN USER
+
+//  LOGIN 
 exports.login = async (req, res) => {
   try {
-    console.log("LOGIN BODY:", req.body);
-
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    console.log("FOUND USER:", user);
 
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    console.log("HASHED PASSWORD:", user.password);
-
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log("PASSWORD MATCH:", isMatch);
 
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid password" });
-    }
-
-    if (!process.env.JWT_SECRET) {
-      return res.status(500).json({ message: "JWT_SECRET not configured" });
     }
 
     const token = jwt.sign(
@@ -95,7 +90,90 @@ exports.login = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("LOGIN ERROR:", error); // 👈 VERY IMPORTANT
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+//  FORGOT PASSWORD (SEND OTP) 
+exports.forgotPassword = async (req, res) => {
+  try {
+    const { email, phone } = req.body;
+
+    const user = await User.findOne({
+      $or: [{ email }, { contact_number: phone }]
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    // generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // store OTP temporarily
+    user.resetOTP = otp;
+    user.otpExpire = Date.now() + 5 * 60 * 1000; // 5 minutes
+    await user.save();
+
+    // send email or SMS (SIMULATION)
+    if (email) {
+      await sendEmail(user.email, "Password Reset OTP", `Your OTP is: ${otp}`);
+    }
+
+    if (phone) {
+      await sendSMS(user.contact_number, `Your OTP is: ${otp}`);
+    }
+
+    res.json({ message: "OTP sent successfully" });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+//  VERIFY OTP 
+exports.verifyOTP = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user || user.resetOTP !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    if (user.otpExpire < Date.now()) {
+      return res.status(400).json({ message: "OTP expired" });
+    }
+
+    res.json({ message: "OTP verified" });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+//  RESET PASSWORD 
+exports.resetPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    const user = await User.findOne({ email });
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password = hashedPassword;
+    user.resetOTP = null;
+    user.otpExpire = null;
+
+    await user.save();
+
+    res.json({ message: "Password reset successful" });
+
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
