@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LoginScreen from "../screens/auth/LoginScreen";
 import RegisterScreen from "../screens/auth/Register1"; // Assuming Register1 is the first step of registration
+import PrivacyPolicy from "../CommonScreens/PrivacyPolicy";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,8 @@ export default function AppNavigator() {
 
         {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
         <Stack.Screen name="Register" component={RegisterScreen} />
-
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

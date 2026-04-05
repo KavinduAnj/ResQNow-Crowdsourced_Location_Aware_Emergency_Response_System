@@ -13,6 +13,15 @@ export default StyleSheet.create({
         lineHeight: 18,
 
     },
+
+    textcard: {
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    elevation: 2,
+    },  
+
     textHeader: {
         color: "#003049",
         fontSize: 18,
