@@ -30,7 +30,16 @@ export default function AppNavigator() {
         <Stack.Screen name="ForgotPassword1" component={ForgotPassword1} />
         <Stack.Screen name="LogoutPopup" component={LogoutPopup} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            header: () => <HomeHeader />
+          }}
+        />
+
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
