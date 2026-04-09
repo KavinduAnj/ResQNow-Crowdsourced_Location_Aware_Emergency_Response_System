@@ -14,8 +14,15 @@ import ForgotPassword1 from "../screens/auth/ForgotPassword1";
 import LogoutPopup from "../screens/auth/LogoutPopup";
 import PrivacyPolicy from "../CommonScreens/PrivacyPolicy";
 import HomeScreen from "../screens/auth/HomeScreen";
+import TermsConditions from "../CommonScreens/TermsConditions";
+import HelpSupport from "../CommonScreens/HelpSupport";
+import ProfileScreen from "../ProfileScreen";
+import EditProfileScreen from "../EditProfileScreen";
+import NotificationSettings from "../NotificationSettingsScreen";
+import HelpSupportScreen from "../HelpSupportScreen";
 import LiveMapScreen from "../screens/Citizen/LiveMapScreen";
 import ReportIncident from "../screens/Citizen/ReportIncident";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +44,17 @@ export default function AppNavigator() {
 
 
 
+       
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="TermsConditions" component={TermsConditions} options={{headerShown:false}}/>
+        <Stack.Screen name="HelpSupport" component={HelpSupport} options={{headerShown:false}}/>
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{headerShown:false}} />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{headerShown:false}} />
+        <Stack.Screen name="NotificationSettings" component={NotificationSettings} options={{headerShown:false}} />
+        <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} options={{headerShown:false}} />
 
         {/* Common screens */}
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
