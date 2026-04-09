@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons, Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeHeader = () => {
+  const navigation = useNavigation();
   return (
     <LinearGradient
       colors={['#830F11', '#1D0304']}
@@ -42,7 +44,11 @@ const HomeHeader = () => {
       {/* Action Buttons Row */}
       <View className="flex-row justify-between gap-2">
         {/* Button 1: My Reports */}
-        <TouchableOpacity className="bg-white rounded-[20px] w-[31%] py-4 items-center" style={{ elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4 }}>
+        <TouchableOpacity 
+          className="bg-white rounded-[20px] w-[31%] py-4 items-center" 
+          style={{ elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4 }}
+          onPress={() => navigation.navigate('MyReports')}
+        >
           <View className="w-[42px] h-[42px] rounded-full bg-[#D32F2F] items-center justify-center mb-2.5">
             <Feather name="alert-circle" size={22} color="white" />
           </View>
