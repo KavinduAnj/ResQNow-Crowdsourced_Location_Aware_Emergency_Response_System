@@ -19,6 +19,7 @@ import HelpSupport from "../screens/Responder/HelpSupport";
 import ProfileScreen from "../screens/Citizen/ProfileScreen";
 import EditProfileScreen from "../screens/Citizen/EditProfileScreen";
 import NotificationSettings from "../screens/Citizen/NotificationSettingsScreen";
+import SettingsScreen from "../screens/Responder/Settings";
 // import HelpSupportScreen from "../HelpSupportScreen";
 import LiveMapScreen from "../screens/Citizen/LiveMapScreen";
 import AlertScreen from "../screens/Citizen/AlertScreen";
@@ -28,13 +29,15 @@ import PrivacySecuritySettings from "../screens/Citizen/PrivacySecuritySettings"
 import ReportIncident from "../screens/Citizen/ReportIncident";
 // import TestScreen from "../screens/TestScreen";
 
+import MyReportsScreen from "../screens/Citizen/MyReportsScreen";
+import IncidentDetailsScreen from "../screens/Citizen/IncidentDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
 
         {/* <Stack.Navigator initialRouteName="TestScreen" screenOptions={{ headerShown: false }}> */}
         {/* Auth flow */}
@@ -52,20 +55,25 @@ export default function AppNavigator() {
         <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="DangerZones" component={DangerZones} options={{ headerShown: false }} />
-
-
-        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{headerShown:false}}/>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="TermsConditions" component={TermsConditions} options={{headerShown:false}}/>
-        <Stack.Screen name="HelpSupport" component={HelpSupport} options={{headerShown:false}}/>
-        <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{headerShown:false}} />
-        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{headerShown:false}} />
-        <Stack.Screen name="NotificationSettings" component={NotificationSettings} options={{headerShown:false}} />
-        <Stack.Screen name="PrivacySecuritySettings" component={PrivacySecuritySettings} options={{headerShown:false}} />
         
+
+
+        <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="TermsConditions" component={TermsConditions} options={{ headerShown: false }} />
+        <Stack.Screen name="HelpSupport" component={HelpSupport} options={{ headerShown: false }} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }} />
+        <Stack.Screen name="PrivacySecuritySettings" component={PrivacySecuritySettings} options={{ headerShown: false }} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MyReports" component={MyReportsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="ReportIncident" component={ReportIncident} options={{ headerShown: false }} />
+        <Stack.Screen name="IncidentDetails" component={IncidentDetailsScreen} options={{ headerShown: false }} />
+
         {/* <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} options={{headerShown:false}} /> */}
 
-       
+
       </Stack.Navigator>
     </NavigationContainer>
   );
