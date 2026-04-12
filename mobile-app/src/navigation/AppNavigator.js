@@ -23,9 +23,10 @@ import NotificationSettings from "../screens/Citizen/NotificationSettingsScreen"
 import LiveMapScreen from "../screens/Citizen/LiveMapScreen";
 import AlertScreen from "../screens/Citizen/AlertScreen";
 import ResponderAlertScreen from "../screens/Responder/ResponderAlertScreen";
+import DangerZones from "../screens/Citizen/DangerZones";
 import PrivacySecuritySettings from "../screens/Citizen/PrivacySecuritySettings";
 import ReportIncident from "../screens/Citizen/ReportIncident";
-import TestScreen from "../screens/TestScreen";
+// import TestScreen from "../screens/TestScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -50,6 +51,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Map"  component={LiveMapScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="DangerZones" component={DangerZones} options={{ headerShown: false }} />
 
 
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{headerShown:false}}/>
