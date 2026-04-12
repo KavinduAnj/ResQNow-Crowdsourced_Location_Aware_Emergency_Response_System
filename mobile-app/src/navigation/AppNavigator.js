@@ -24,8 +24,11 @@ import SettingsScreen from "../screens/Responder/Settings";
 import LiveMapScreen from "../screens/Citizen/LiveMapScreen";
 import AlertScreen from "../screens/Citizen/AlertScreen";
 import ResponderAlertScreen from "../screens/Responder/ResponderAlertScreen";
+import DangerZones from "../screens/Citizen/DangerZones";
 import PrivacySecuritySettings from "../screens/Citizen/PrivacySecuritySettings";
 import ReportIncident from "../screens/Citizen/ReportIncident";
+// import TestScreen from "../screens/TestScreen";
+
 import MyReportsScreen from "../screens/Citizen/MyReportsScreen";
 import IncidentDetailsScreen from "../screens/Citizen/IncidentDetailsScreen";
 
@@ -48,9 +51,11 @@ export default function AppNavigator() {
         <Stack.Screen name="SuccessfulSetPassword" component={SuccessfulSetPassword} />
         <Stack.Screen name="ForgotPassword1" component={ForgotPassword1} />
         <Stack.Screen name="LogoutPopup" component={LogoutPopup} />
-        <Stack.Screen name="Map" component={LiveMapScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Map"  component={LiveMapScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="DangerZones" component={DangerZones} options={{ headerShown: false }} />
+        
 
 
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ headerShown: false }} />
