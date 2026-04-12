@@ -19,12 +19,16 @@ import HelpSupport from "../screens/Responder/HelpSupport";
 import ProfileScreen from "../screens/Citizen/ProfileScreen";
 import EditProfileScreen from "../screens/Citizen/EditProfileScreen";
 import NotificationSettings from "../screens/Citizen/NotificationSettingsScreen";
+import SettingsScreen from "../screens/Responder/Settings";
 // import HelpSupportScreen from "../HelpSupportScreen";
 import LiveMapScreen from "../screens/Citizen/LiveMapScreen";
 import AlertScreen from "../screens/Citizen/AlertScreen";
 import ResponderAlertScreen from "../screens/Responder/ResponderAlertScreen";
+import DangerZones from "../screens/Citizen/DangerZones";
 import PrivacySecuritySettings from "../screens/Citizen/PrivacySecuritySettings";
 import ReportIncident from "../screens/Citizen/ReportIncident";
+// import TestScreen from "../screens/TestScreen";
+
 import MyReportsScreen from "../screens/Citizen/MyReportsScreen";
 import IncidentDetailsScreen from "../screens/Citizen/IncidentDetailsScreen";
 
@@ -47,9 +51,11 @@ export default function AppNavigator() {
         <Stack.Screen name="SuccessfulSetPassword" component={SuccessfulSetPassword} />
         <Stack.Screen name="ForgotPassword1" component={ForgotPassword1} />
         <Stack.Screen name="LogoutPopup" component={LogoutPopup} />
-        <Stack.Screen name="Map" component={LiveMapScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Map"  component={LiveMapScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Alert" component={AlertScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="ResponderAlert" component={ResponderAlertScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="DangerZones" component={DangerZones} options={{ headerShown: false }} />
+        
 
 
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} options={{ headerShown: false }} />
@@ -60,6 +66,7 @@ export default function AppNavigator() {
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ headerShown: false }} />
         <Stack.Screen name="NotificationSettings" component={NotificationSettings} options={{ headerShown: false }} />
         <Stack.Screen name="PrivacySecuritySettings" component={PrivacySecuritySettings} options={{ headerShown: false }} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
         <Stack.Screen name="MyReports" component={MyReportsScreen} options={{ headerShown: false }} />
         <Stack.Screen name="ReportIncident" component={ReportIncident} options={{ headerShown: false }} />
         <Stack.Screen name="IncidentDetails" component={IncidentDetailsScreen} options={{ headerShown: false }} />
